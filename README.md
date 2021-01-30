@@ -2,33 +2,21 @@
 
 A web scraper to check web pages differences using different approaches.
 
-## Define approach
+# Examples of usage
 
-```python
-# Check number of objects
-check_n_objects = True
-...
-
-# Check HTML
-check_html = False
-...
-
-# Check screenshot
-check_screenshot = False
-```
-
-### Check number of HTML objects
+## Check number of HTML objects
 
 ```console
-user@host:~$ python web_scraper_differences_checker.py
-Page downloaded!
-Number of buy-btn: 3
-Page refreshed (1)!
-Sleep 16 s...
+user@host:~$ python web_scraper_differences_checker.py file:///home/user/e_commerce_test.html check_n_objects buy-btn
+Sleep 5 s to let the page load...
 
 Number of buy-btn: 3
+Random sleep 15 s...
+Page refreshed (1)!
+
+Number of buy-btn: 3
+Random sleep 20 s...
 Page refreshed (2)!
-Sleep 18 s...
 
 Number of buy-btn: 4
 Difference found!
@@ -37,51 +25,83 @@ Difference found!
 ## Check HTML
 
 ```console
-user@host:~$ python web_scraper_differences_checker.py
-Page downloaded!
-Current HTML: <html><head></head><body>
+user@host:~$ python web_scraper_differences_checker.py file:///home/user/e_commerce_test.html check_html
+Sleep 5 s to let the page load...
+
+Current HTML: <html><head></head><body onload="generateButtons()">
     <h2>E-commerce test</h2>
     <p>Welcome!</p>
-    <button name="buy-btn">Buy 1</button>
-    <button name="buy-btn">Buy 2</button>
-    <button name="buy-btn">Buy 3</button>
-</body></html>
+    <!--<button name="buy-btn">Buy 4</button>-->
+    <script>
+      function generateButtons() {
+        for (var i = 1; i<=3; i++){
+          var btn = document.createElement("button");
+          btn.innerHTML = "Buy " + i.toString();
+          btn.name = "buy-btn";
+          document.body.appendChild(btn);
+        }
+      }
+    </script>
+  
+
+<button name="buy-btn">Buy 1</button><button name="buy-btn">Buy 2</button><button name="buy-btn">Buy 3</button></body></html>
+Random sleep 10 s...
 Page refreshed (1)!
-Sleep 17 s...
 
-Current HTML: <html><head></head><body>
+Current HTML: <html><head></head><body onload="generateButtons()">
     <h2>E-commerce test</h2>
     <p>Welcome!</p>
-    <button name="buy-btn">Buy 1</button>
-    <button name="buy-btn">Buy 2</button>
-    <button name="buy-btn">Buy 3</button>
-</body></html>
+    <!--<button name="buy-btn">Buy 4</button>-->
+    <script>
+      function generateButtons() {
+        for (var i = 1; i<=3; i++){
+          var btn = document.createElement("button");
+          btn.innerHTML = "Buy " + i.toString();
+          btn.name = "buy-btn";
+          document.body.appendChild(btn);
+        }
+      }
+    </script>
+  
+
+<button name="buy-btn">Buy 1</button><button name="buy-btn">Buy 2</button><button name="buy-btn">Buy 3</button></body></html>
+Random sleep 20 s...
 Page refreshed (2)!
-Sleep 18 s...
 
-Current HTML: <html><head></head><body>
+Current HTML: <html><head></head><body onload="generateButtons()">
     <h2>E-commerce test</h2>
     <p>Welcome!</p>
-    <button name="buy-btn">Buy 1</button>
-    <button name="buy-btn">Buy 2</button>
-    <button name="buy-btn">Buy 3</button>
+    <!--<button name="buy-btn">Buy 4</button>-->
     <button name="buy-btn">Buy 4</button>
-</body></html>
+    <script>
+      function generateButtons() {
+        for (var i = 1; i<=3; i++){
+          var btn = document.createElement("button");
+          btn.innerHTML = "Buy " + i.toString();
+          btn.name = "buy-btn";
+          document.body.appendChild(btn);
+        }
+      }
+    </script>
+  
+
+<button name="buy-btn">Buy 1</button><button name="buy-btn">Buy 2</button><button name="buy-btn">Buy 3</button></body></html>
 Difference found!
 ```
 
 ## Check screenshot
 
 ```console
-user@host:~$ python web_scraper_differences_checker.py
-Page downloaded!
-Screenshot saved...
-Page refreshed (1)!
-Sleep 17 s...
+user@host:~$ python web_scraper_differences_checker.py file:///home/user/e_commerce_test.html check_screenshot
+Sleep 5 s to let the page load...
 
 Screenshot saved...
+Random sleep 14 s...
+Page refreshed (1)!
+
+Screenshot saved...
+Random sleep 18 s...
 Page refreshed (2)!
-Sleep 16 s...
 
 Screenshot saved...
 Difference found!
