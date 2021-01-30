@@ -41,9 +41,7 @@ Current HTML: <html><head></head><body onload="generateButtons()">
           document.body.appendChild(btn);
         }
       }
-    </script>
-  
-
+    </script> 
 <button name="buy-btn">Buy 1</button><button name="buy-btn">Buy 2</button><button name="buy-btn">Buy 3</button></body></html>
 Random sleep 10 s...
 Page refreshed (1)!
@@ -62,8 +60,6 @@ Current HTML: <html><head></head><body onload="generateButtons()">
         }
       }
     </script>
-  
-
 <button name="buy-btn">Buy 1</button><button name="buy-btn">Buy 2</button><button name="buy-btn">Buy 3</button></body></html>
 Random sleep 20 s...
 Page refreshed (2)!
@@ -83,8 +79,6 @@ Current HTML: <html><head></head><body onload="generateButtons()">
         }
       }
     </script>
-  
-
 <button name="buy-btn">Buy 1</button><button name="buy-btn">Buy 2</button><button name="buy-btn">Buy 3</button></body></html>
 Difference found!
 ```
