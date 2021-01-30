@@ -4,6 +4,7 @@ import time
 from random import randint
 import filecmp
 import os
+import sys
 
 def alarm(t):
 	for i in range(0,t):
@@ -11,7 +12,7 @@ def alarm(t):
 
 def random_sleep(t_min):
 	z = t_min + randint(0,10) # Sleep at least t_min
-	print("Sleep " + str(z) + " s...\n")
+	print("Random sleep " + str(z) + " s...")
 	time.sleep(z)
 
 def difference_found():
@@ -19,24 +20,31 @@ def difference_found():
 	alarm(1000) # Alarm for 1000 s
 	exit()
 
+# Parse parameters
+page = sys.argv[1]
+approach = sys.argv[2] # "file:///home/user/e_commerce_test.html"
+if approach == "check_n_objects":
+	name = sys.argv[3] # "buy-btn"
+
+# Load page
 driver = webdriver.Firefox()
-driver.get("file:///home/user/e_commerce_test.html")
-print("Page downloaded!")
+driver.get(page)
+print("Sleep " + str(5) + " s to let the page load...\n")
+time.sleep(5)
 
 # Refresh counter
 i = 0
 
 # Check number of objects
-check_n_objects = True
-name = "buy-btn"
+check_n_objects = approach == "check_n_objects"
 previous_n = 0
 
 # Check HTML
-check_html = False
+check_html = approach == "check_html"
 previous_html = ""
 
 # Check screenshot
-check_screenshot = False
+check_screenshot = approach == "check_screenshot"
 
 while True:
 	if check_n_objects:
@@ -65,8 +73,8 @@ while True:
 			os.remove("previous_screenshot.png")
 		os.rename("current_screenshot.png","previous_screenshot.png")
 
+	random_sleep(10)
+
 	i += 1
 	driver.refresh()
-	print("Page refreshed (" + str(i) + ")!")
-
-	random_sleep(10)
+	print("Page refreshed (" + str(i) + ")!\n")

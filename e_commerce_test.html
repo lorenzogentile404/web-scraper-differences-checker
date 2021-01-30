@@ -1,9 +1,17 @@
 <html>
-  <body>
+  <body onload="generateButtons()">
     <h2>E-commerce test</h2>
     <p>Welcome!</p>
-    <button name="buy-btn">Buy 1</button>
-    <button name="buy-btn">Buy 2</button>
-    <button name="buy-btn">Buy 3</button>
+    <!--<button name="buy-btn">Buy 4</button>-->
+    <script>
+      function generateButtons() {
+        for (var i = 1; i<=3; i++){
+          var btn = document.createElement("button");
+          btn.innerHTML = "Buy " + i.toString();
+          btn.name = "buy-btn";
+          document.body.appendChild(btn);
+        }
+      }
+    </script>
   </body>
 </html>
