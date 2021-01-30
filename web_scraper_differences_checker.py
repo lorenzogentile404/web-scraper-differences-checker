@@ -20,6 +20,9 @@ def difference_found():
 	alarm(1000) # Alarm for 1000 s
 	exit()
 
+# Minimum time (s) between checks
+T_MIN = 60
+
 # Parse parameters
 page = sys.argv[1]
 approach = sys.argv[2] # "file:///home/user/e_commerce_test.html"
@@ -73,7 +76,7 @@ while True:
 			os.remove("previous_screenshot.png")
 		os.rename("current_screenshot.png","previous_screenshot.png")
 
-	random_sleep(10)
+	random_sleep(T_MIN)
 
 	i += 1
 	driver.refresh()
