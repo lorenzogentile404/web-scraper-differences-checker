@@ -6,8 +6,14 @@ import filecmp
 import os
 import sys
 
-def alarm(t):
-	for i in range(0,t):
+# Alarm time (s)
+T_ALARM = 1000
+
+# Minimum time (s) between checks
+T_MIN = 60
+
+def alarm(t_alarm):
+	for i in range(0,t_alarm):
 		os.system('play -nq -t alsa synth {} sine {}'.format(1, 100*randint(3,10))) # s, Hz
 
 def random_sleep(t_min):
@@ -17,11 +23,8 @@ def random_sleep(t_min):
 
 def difference_found():
 	print("Difference found!")
-	alarm(1000) # Alarm for 1000 s
+	alarm(T_ALARM) # Alarm time (s)
 	exit()
-
-# Minimum time (s) between checks
-T_MIN = 60
 
 # Parse parameters
 page = sys.argv[1]
